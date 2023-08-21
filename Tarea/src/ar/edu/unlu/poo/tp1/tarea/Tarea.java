@@ -1,4 +1,4 @@
-package ar.edu.unlu.poo.tp1.tareas;
+package ar.edu.unlu.poo.tp1.tarea;
 import java.time.LocalDate;
 
 
@@ -47,4 +47,3 @@ public class Tarea {
         return acumulador;
     }
 }
-

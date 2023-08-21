@@ -1,4 +1,4 @@
-import ar.edu.unlu.poo.tp1.tareas.Tarea;
+import ar.edu.unlu.poo.tp1.tarea.*;
 
 public class Main {
     public static void main(String[] args) {
