@@ -4,19 +4,26 @@ import java.time.LocalDate;
 
 public class Tarea {
     private String descripcion;
-    private int prioridad;
+    private Prioridad prioridad;
     private boolean estado = false;
     private LocalDate fechaLimite;
+    private LocalDate recordatorio = null;
+    public enum Prioridad {BAJA, MEDIA, ALTA}
+    public Tarea (String descripcion, boolean estado, Prioridad prioridad){
+        this.descripcion = descripcion;
+        this.estado = estado;
+        this.prioridad = prioridad;
+    }
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
 
-    public void setPrioridad(int prioridad) {
+    public void setPrioridad(Prioridad prioridad) {
         this.prioridad = prioridad;
     }
 
-    public int getPrioridad() {
+    public Prioridad getPrioridad() {
         return prioridad;
     }
 
@@ -24,13 +31,20 @@ public class Tarea {
         this.estado = estado;
     }
 
+    public void setRecordatorio(int dia, int mes, int anio){
+        LocalDate fechaActual = LocalDate.now();
+        this.recordatorio = LocalDate.of(anio,mes,dia);
+        if(fechaActual.isAfter(recordatorio) || fechaActual.isEqual(recordatorio)){
+            this.prioridad = Prioridad.ALTA;
+        }
+    }
+
     public boolean esCompleta(){
         return estado;
     }
 
     public void setFechaLimite(int dia, int mes, int anio) {
-        LocalDate fechaLimite = LocalDate.of(anio, mes, dia);
-        this.fechaLimite = fechaLimite;
+        this.fechaLimite = LocalDate.of(anio, mes, dia);
     }
 
     public boolean esVencida(){
@@ -39,10 +53,17 @@ public class Tarea {
     }
 
     public String mostrarTarea(){
+        LocalDate fechaActual = LocalDate.now();
         String acumulador = "";
         if (this.esVencida()){
-            acumulador += "(Vencida) ";
+            acumulador += "\u001B[31m(Vencida)\u001B[0m ";
         }
+        if (recordatorio != null){
+            if (recordatorio.isAfter(fechaActual) || recordatorio.isEqual(fechaActual)){
+                acumulador += "\u001B[33m(Por vencer)\u001B[0m ";
+            }
+        }
+
         acumulador += this.descripcion;
         return acumulador;
     }
