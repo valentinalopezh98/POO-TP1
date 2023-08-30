@@ -8,15 +8,20 @@ public class Tarea {
     private boolean estado = false;
     private LocalDate fechaLimite;
     private LocalDate recordatorio = null;
-    public enum Prioridad {BAJA, MEDIA, ALTA}
-    public Tarea (String descripcion, boolean estado, Prioridad prioridad){
+    private LocalDate fechaFinalizacion = null;
+    private Colaborador colaborador = null;
+    public enum Prioridad {ALTA, MEDIA, BAJA}
+    public Tarea (String descripcion, Prioridad prioridad){
         this.descripcion = descripcion;
-        this.estado = estado;
         this.prioridad = prioridad;
     }
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    public String getDescripcion(){
+        return descripcion;
     }
 
     public void setPrioridad(Prioridad prioridad) {
@@ -27,8 +32,18 @@ public class Tarea {
         return prioridad;
     }
 
-    public void setEstado(boolean estado){
-        this.estado = estado;
+    public void realizarTarea(Colaborador colaborador){
+        estado = true;
+        fechaFinalizacion = LocalDate.now();
+        colaborador = colaborador;
+    }
+
+    public LocalDate getFechaLimite() {
+        return fechaLimite;
+    }
+
+    public LocalDate getFechaFinalizacion() {
+        return fechaFinalizacion;
     }
 
     public void setRecordatorio(int dia, int mes, int anio){
@@ -52,7 +67,7 @@ public class Tarea {
         return (fechaActual.isAfter(fechaLimite) && !estado);
     }
 
-    public String mostrarTarea(){
+    public String toString(){
         LocalDate fechaActual = LocalDate.now();
         String acumulador = "";
         if (this.esVencida()){
@@ -62,6 +77,9 @@ public class Tarea {
             if (recordatorio.isAfter(fechaActual) || recordatorio.isEqual(fechaActual)){
                 acumulador += "\u001B[33m(Por vencer)\u001B[0m ";
             }
+        }
+        if (this.esCompleta()){
+            acumulador += "\u001B[32m(Completada)\u001B[0m ";
         }
 
         acumulador += this.descripcion;

@@ -5,7 +5,7 @@ public class Libro {
     private String autor;
     private String ISBN;
     private int cantidadPaginas;
-    private int cantidadEjemplares;
+    private int cantidadTotalEjemplares;
     private int cantidadPrestados = 0;
 
     public Libro(String nombre, String autor, String ISBN, int cantidadPaginas, int cantidadEjemplares){
@@ -13,7 +13,7 @@ public class Libro {
         this.autor = autor;
         this.ISBN = ISBN;
         this.cantidadPaginas = cantidadPaginas;
-        this.cantidadEjemplares = cantidadEjemplares;
+        this.cantidadTotalEjemplares = cantidadEjemplares;
     }
 
     public Libro(String nombre, String autor, int cantidadPaginas, int cantidadEjemplares){
@@ -21,10 +21,10 @@ public class Libro {
         this.autor = autor;
         this.ISBN = null;
         this.cantidadPaginas = cantidadPaginas;
-        this.cantidadEjemplares = cantidadEjemplares;
+        this.cantidadTotalEjemplares = cantidadEjemplares;
     }
 
-    public String descripcion(){
+    public String toString(){
         return "El libro \u001B[36m" + nombre + "\u001B[0m creado por el autor \u001B[36m" + autor +
                 "\u001B[0m tiene \u001B[36m" + cantidadPaginas + "\u001B[0m páginas, quedan \u001B[36m" +
                 getCantidadEjemplares() + "\u001B[0m ejemplares disponibles y se prestaron \u001B[36m" +
@@ -32,7 +32,7 @@ public class Libro {
     }
 
     public int getCantidadDisponibles(){
-        return (cantidadEjemplares - cantidadPrestados);
+        return (cantidadTotalEjemplares - cantidadPrestados);
     }
 
     public int getCantidadPrestados(){
@@ -40,7 +40,7 @@ public class Libro {
     }
 
     public int getCantidadEjemplares() {
-        return cantidadEjemplares;
+        return cantidadTotalEjemplares;
     }
 
     public int getCantidadPaginas(){
@@ -59,7 +59,7 @@ public class Libro {
     }
 
     public void agregarEjemplares(int cantidadNuevosEjemplares){
-        cantidadEjemplares += cantidadNuevosEjemplares;
+        cantidadTotalEjemplares += cantidadNuevosEjemplares;
     }
 
     public boolean prestarLibro(){
@@ -79,4 +79,5 @@ public class Libro {
         }
         return seDevuelve;
     }
+
 }

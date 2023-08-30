@@ -2,22 +2,41 @@ import ar.edu.unlu.poo.tp1.tarea.*;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("\u001B[35mLISTA DE TAREAS\u001B[0m");
-        Tarea tarea = new Tarea("Ir al supermercado manana",false, Tarea.Prioridad.MEDIA );
-        tarea.setFechaLimite(30,10,2023);
-        System.out.println(tarea.mostrarTarea());
+        ListaDeTareas lista = new ListaDeTareas();
+        lista.agregarColaborador("Valen");
+        lista.agregarTarea("Ir al supermercado manana", Tarea.Prioridad.MEDIA );
+        Tarea tarea1 = lista.buscarTarea("Ir al supermercado manana");
+        tarea1.setFechaLimite(30,10,2023);
 
-        Tarea tarea2 = new Tarea("Consultar repuesto del auto",true, Tarea.Prioridad.MEDIA);
+
+        lista.agregarTarea("Consultar repuesto del auto", Tarea.Prioridad.MEDIA);
+        Tarea tarea2 = lista.buscarTarea("Consultar repuesto del auto");
+        lista.realizarTarea(tarea2,"Valen");
         tarea2.setFechaLimite(19,8,2023);
-        System.out.println(tarea2.mostrarTarea());
 
-        Tarea tarea3 = new Tarea("Ir al cine a ver la nueva película de Marvel", false, Tarea.Prioridad.MEDIA);
+
+        lista.agregarTarea("Ir al cine a ver la nueva película de Marvel", Tarea.Prioridad.MEDIA);
+        Tarea tarea3 = lista.buscarTarea("Ir al cine a ver la nueva película de Marvel");
         tarea3.setFechaLimite(19,8,2023);
-        System.out.println(tarea3.mostrarTarea());
 
-        Tarea tarea4 = new Tarea("Terminar TP", false, Tarea.Prioridad.ALTA);
+        lista.agregarTarea("Terminar TP", Tarea.Prioridad.ALTA);
+        Tarea tarea4 = lista.buscarTarea("Terminar TP");
         tarea4.setFechaLimite(29,9,2023);
         tarea4.setRecordatorio(20,9,2023);
-        System.out.println(tarea4.mostrarTarea());
+
+        lista.agregarTarea("Estudiar", Tarea.Prioridad.MEDIA);
+        Tarea tarea5 = lista.buscarTarea("Estudiar");
+        tarea5.setFechaLimite(29,9,2023);
+        tarea5.setRecordatorio(30,8,2023);
+
+        lista.agregarTarea("Dar final de arquitectura", Tarea.Prioridad.MEDIA);
+        Tarea tarea6 = lista.buscarTarea("Dar final de arquitectura");
+        tarea6.setFechaLimite(2,12,2024);
+        tarea6.setRecordatorio(5,11,2024);
+
+
+        System.out.println(lista);
+        System.out.println(lista.mostrarOrdenadas());
+        System.out.println(lista.verTareasDeColaborador("Valen"));
     }
 }
