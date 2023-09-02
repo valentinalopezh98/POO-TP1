@@ -1,9 +1,13 @@
 package ar.edu.unlu.poo.tp1.juego;
-
 import java.util.ArrayList;
 
 public class Juego {
     private ArrayList<Jugador> jugadores = new ArrayList<>();
+    private Diccionario diccionario;
+
+    public Juego(Diccionario diccionario){
+        this.diccionario = diccionario;
+    }
     public void agregarJugador(String nombre){
         Jugador jugador = new Jugador(nombre);
         jugadores.add(jugador);
@@ -28,12 +32,16 @@ public class Juego {
                 mayor + " puntos";
     }
 
-    public void agregarPalabra(String palabra, String nombre){
+    public boolean probarPalabra(String palabra, String nombre){
         for (Jugador jugador : jugadores){
             if(jugador.getNombre().equals(nombre)){
-                jugador.agregarPalabra(palabra);
+                if (diccionario.esValida(palabra)){
+                    jugador.agregarPalabra(palabra);
+                    return true;
+                }
             }
         }
+        return false;
     }
 
     public int getPuntajeTotal(String nombreJugador){
