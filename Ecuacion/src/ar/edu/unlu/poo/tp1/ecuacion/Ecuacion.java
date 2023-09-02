@@ -40,17 +40,22 @@ public class Ecuacion {
     public int cantidadDeRaices(){
         if (((Math.pow(coeficienteB,2)) - 4 * coeficienteA * coeficienteC) == 0 ){
             return 1;
+        } else if(((Math.pow(coeficienteB,2)) - 4 * coeficienteA * coeficienteC) < 0){
+            return -1;
         } else return 2;
     }
     public float[] calcularRaices(){;
         float[] miArreglo;
-        if (cantidadDeRaices() == 1){
+        int cantidad = cantidadDeRaices();
+        if (cantidad == 1){
             miArreglo = new float[1];
             miArreglo[0] = calcularRaiz("suma");
-        } else {
+        } else if(cantidad == 2){
             miArreglo = new float[2];
             miArreglo[0] =calcularRaiz("suma");
             miArreglo[1]= calcularRaiz("resta");
+        } else {
+            return null;
         }
         return miArreglo;
     }
