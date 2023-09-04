@@ -16,6 +16,12 @@ public class Tarea {
         this.prioridad = prioridad;
     }
 
+    public Tarea (String descripcion, Prioridad prioridad, int diaLimite, int mesLimite, int anioLimite){
+        this.descripcion = descripcion;
+        this.prioridad = prioridad;
+        this.fechaLimite = LocalDate.of(anioLimite,mesLimite,diaLimite);
+    }
+
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
@@ -65,6 +71,12 @@ public class Tarea {
     public boolean esVencida(){
         LocalDate fechaActual = LocalDate.now();
         return (fechaActual.isAfter(fechaLimite) && !estado);
+    }
+
+    public String mostrarDetalles(){
+        return  "\u001B[36mDescripcion: \u001B[0m" + this.toString() +
+                "\n\u001B[36mPrioridad: \u001B[0m" + prioridad +
+                "\n\u001B[36mFecha de vencimiento: \u001B[0m" + getFechaLimite();
     }
 
     public String toString(){

@@ -4,39 +4,35 @@ public class Main {
     public static void main(String[] args) {
         ListaDeTareas lista = new ListaDeTareas();
         lista.agregarColaborador("Valen");
-        lista.agregarTarea("Ir al supermercado manana", Tarea.Prioridad.MEDIA );
-        Tarea tarea1 = lista.buscarTarea("Ir al supermercado manana");
-        tarea1.setFechaLimite(30,10,2023);
+        lista.agregarTarea("Ir al supermercado", Tarea.Prioridad.MEDIA, 30,10,2023);
+
+        lista.agregarTarea("Consultar repuesto del auto", Tarea.Prioridad.MEDIA,28,8,2023);
+        lista.realizarTarea("Consultar repuesto del auto", "Valen");
+
+        lista.agregarTarea("Ir al cine a ver la nueva película de Marvel", Tarea.Prioridad.MEDIA,19,8,2023);
 
 
-        lista.agregarTarea("Consultar repuesto del auto", Tarea.Prioridad.MEDIA);
-        Tarea tarea2 = lista.buscarTarea("Consultar repuesto del auto");
-        lista.realizarTarea(tarea2,"Valen");
-        tarea2.setFechaLimite(19,8,2023);
+        System.out.println("PRUEBAS EJERCICIO 5: \n");
+        System.out.println(lista.mostrarLista());
 
+        System.out.println("\n PRUEBAS EJERCICIO 10 y 12: \n");
+        lista.agregarTarea("Terminar TP", Tarea.Prioridad.MEDIA, 29,9,2023);
+        lista.establecerFechaRecordatorio("Terminar TP", 20,9,2023);
 
-        lista.agregarTarea("Ir al cine a ver la nueva película de Marvel", Tarea.Prioridad.MEDIA);
-        Tarea tarea3 = lista.buscarTarea("Ir al cine a ver la nueva película de Marvel");
-        tarea3.setFechaLimite(19,8,2023);
+        lista.agregarTarea("Estudiar", Tarea.Prioridad.MEDIA,29,9,2023);
+        lista.establecerFechaRecordatorio("Estudiar", 30,8,2023);
 
-        lista.agregarTarea("Terminar TP", Tarea.Prioridad.ALTA);
-        Tarea tarea4 = lista.buscarTarea("Terminar TP");
-        tarea4.setFechaLimite(29,9,2023);
-        tarea4.setRecordatorio(20,9,2023);
+        lista.agregarTarea("Dar final de arquitectura", Tarea.Prioridad.MEDIA, 2,12,2024);
+        lista.establecerFechaRecordatorio("Dar final de arquitectura",5,11,2024);
 
-        lista.agregarTarea("Estudiar", Tarea.Prioridad.MEDIA);
-        Tarea tarea5 = lista.buscarTarea("Estudiar");
-        tarea5.setFechaLimite(29,9,2023);
-        tarea5.setRecordatorio(30,8,2023);
+        System.out.println(lista.mostrarListaOrdenada());
 
-        lista.agregarTarea("Dar final de arquitectura", Tarea.Prioridad.MEDIA);
-        Tarea tarea6 = lista.buscarTarea("Dar final de arquitectura");
-        tarea6.setFechaLimite(2,12,2024);
-        tarea6.setRecordatorio(5,11,2024);
+        System.out.println("PRUEBAS EJERCICIO 13: \n");
 
+        lista.agregarTarea("Escuchar album nuevo de Blur", Tarea.Prioridad.MEDIA, 5,9,2023);
+        lista.realizarTarea("Escuchar album nuevo de Blur", "Valen");
 
-        System.out.println(lista);
-        System.out.println(lista.mostrarOrdenadas());
         System.out.println(lista.verTareasDeColaborador("Valen"));
+
     }
 }
